@@ -1,0 +1,5 @@
+[
+    {"name": "user_create", "value": "user_create"},
+    {"name": "user_edit", "value": "user_edit"},
+    {"name": "bank_add", "value": "bank_add", "category": "CLIENT"}
+]
