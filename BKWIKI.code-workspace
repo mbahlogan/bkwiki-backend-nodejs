@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../bkwiki-client-nextjs"
+		},
+		{
+			"path": "../bkwiki-backoffice-reactjs"
+		},
+		{
+			"path": "../bkwiki-backend-nestjs"
+		}
+	],
+	"settings": {}
+}

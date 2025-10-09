@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "engines": {
-    "node": ">=16.0.0 <17.0.0"
-  },
   "scripts": {
     "start": "env-cmd -e production node index.js",
     "dev": "env-cmd -e development nodemon index.js",
