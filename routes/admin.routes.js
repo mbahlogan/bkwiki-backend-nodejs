@@ -44,32 +44,32 @@ router.post("/profiles/:id/actions", validationMiddleware(adminValidations.addAc
 router.get("/profiles/:id/actions", profileController.getActionsByProfile);
 router.get("/actions", profileController.getActions);
 // ATMs
-router.get("/atms",  allowClient, atmController.getATMs);
-router.post("/atms",  [allowClient, validationMiddleware(adminValidations.createATM)], atmController.createATM);
-router.put("/atms/:id",  [allowClient, validationMiddleware(adminValidations.createATM)], atmController.updateATM);
-router.patch("/atms/:id",  allowClient, atmController.toggleATM);
-router.delete("/atms/:id",  allowClient, atmController.deleteATM);
+router.get("/atms", allowAdmin, atmController.getATMs);
+router.post("/atms",  [allowAdmin, validationMiddleware(adminValidations.createATM)], atmController.createATM);
+router.put("/atms/:id",  [allowAdmin, validationMiddleware(adminValidations.createATM)], atmController.updateATM);
+router.patch("/atms/:id",  allowAdmin, atmController.toggleATM);
+router.delete("/atms/:id",  allowAdmin, atmController.deleteATM);
 
 // Branches
-router.get("/branch",  allowClient, branchController.getBranch);
-router.post("/branch",  [allowClient, validationMiddleware(adminValidations.createBranch)], branchController.createBranch);
-router.put("/branch/:id",  [allowClient, validationMiddleware(adminValidations.createBranch)], branchController.updateBranch);
-router.patch("/branch/:id",  allowClient, branchController.toggleBranch);
-router.delete("/branch/:id",  allowClient, branchController.deleteBranch);
+router.get("/branch",  allowAdmin, branchController.getBranch);
+router.post("/branch",  [allowAdmin, validationMiddleware(adminValidations.createBranch)], branchController.createBranch);
+router.put("/branch/:id",  [allowAdmin, validationMiddleware(adminValidations.createBranch)], branchController.updateBranch);
+router.patch("/branch/:id",  allowAdmin, branchController.toggleBranch);
+router.delete("/branch/:id",  allowAdmin, branchController.deleteBranch);
 
 // Loans
-router.get("/loans",  allowClient, loansController.getLoans);
-router.post("/loans",  [allowClient, validationMiddleware(adminValidations.createLoans)], loansController.createLoan);
-router.put("/loans/:id",  [allowClient, validationMiddleware(adminValidations.createLoans)], loansController.updateLoan);
-router.patch("/loans/:id",  allowClient, loansController.toggleLoan);
-router.delete("/loans/:id",  allowClient, loansController.deleteLoan);
+router.get("/loans",  allowAdmin, loansController.getLoans);
+router.post("/loans",  [allowAdmin, validationMiddleware(adminValidations.createLoans)], loansController.createLoan);
+router.put("/loans/:id",  [allowAdmin, validationMiddleware(adminValidations.createLoans)], loansController.updateLoan);
+router.patch("/loans/:id",  allowAdmin, loansController.toggleLoan);
+router.delete("/loans/:id",  allowAdmin, loansController.deleteLoan);
 
 // Cards
-router.get("/cards",  allowClient, cardController.getCards);
-router.post("/cards",  [allowClient, validationMiddleware(adminValidations.createCard)], cardController.createCard);
-router.put("/cards/:id",  [allowClient, validationMiddleware(adminValidations.createCard)], cardController.updateCard);
-router.patch("/cards/:id",  allowClient, cardController.toggleCard);
-router.delete("/cards/:id",  allowClient, cardController.deleteCard);
+router.get("/cards",  allowAdmin, cardController.getCards);
+router.post("/cards",  [allowAdmin, validationMiddleware(adminValidations.createCard)], cardController.createCard);
+router.put("/cards/:id",  [allowAdmin, validationMiddleware(adminValidations.createCard)], cardController.updateCard);
+router.patch("/cards/:id",  allowAdmin, cardController.toggleCard);
+router.delete("/cards/:id",  allowAdmin, cardController.deleteCard);
 
 router.get("/users", adminController.getUsers);
 router.get("/users/me", adminController.getAuthUser);

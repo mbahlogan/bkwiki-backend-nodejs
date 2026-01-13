@@ -67,7 +67,7 @@ exports.loginAdmin = async (req, res) => {
     const org = await organisationModel.findById(user.organisation).populate("logo")
     const jwtUser = JSON.stringify({ id: user._id, email: user.email });
     const token = jwt.sign({ user: jwtUser }, process.env.JWT_SECRET);
-    res.json({
+    res.status(201).json({
       message: messages.SUCCESS,
       success: true,
       data: {
@@ -92,7 +92,7 @@ exports.loginAdmin = async (req, res) => {
       },
     });
   } catch (error) {
-    res.json({
+    res.status(500).json({
       message: "Incorrect credential",
       code: errors.INCORRECT_CREDENTIAL,
       success: false,
@@ -147,7 +147,7 @@ exports.loginClient = async (req, res) => {
 
     const jwtUser = JSON.stringify({ id: client._id });
     const token = jwt.sign({ user: jwtUser }, process.env.JWT_SECRET);
-    res.json({
+    res.status(201).json({
       message: messages.SUCCESS,
       success: true,
       data: {
@@ -160,7 +160,7 @@ exports.loginClient = async (req, res) => {
       },
     });
   } catch (error) {
-    res.json({
+    res.status(500).json({
       error: errors.INCORRECT_CREDENTIAL,
       message: "Incorrect credential",
       success: false,
