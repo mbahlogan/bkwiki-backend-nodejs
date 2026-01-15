@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "env-cmd -e production -- node dist/index.js",
-    "dev": "env-cmd -e development -- nodemon index.ts",
+    "start": "env-cmd -f .env -- node dist/index.js",
+    "dev": "env-cmd -f .env -- nodemon index.ts",
     "start:stagging": "env-cmd -e staging -- nodemon index.ts",
     "build": "tsc"
   },

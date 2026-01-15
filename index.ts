@@ -49,7 +49,6 @@ app.use("/unauthorised", (_, res) => {
   res.status(401).json({ message: "Unauthorised" });
 });
 
-
 mongoose.connect(process.env.MONGODB_URL || "").then(() => {
   const port = process.env.PORT || 8000
   prepareApp().then(() => {
