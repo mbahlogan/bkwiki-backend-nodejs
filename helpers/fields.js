@@ -1,1 +1,0 @@
-exports.USER_FIELDS = ["fname", "lname", "phone", "email", "isActive", "organisation", "profile", "created", "updated"]
