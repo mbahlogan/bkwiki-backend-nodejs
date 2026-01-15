@@ -1,13 +1,13 @@
 import fs from "fs";
 import multer from "multer";
-import uuid from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 import path from "path";
 import { uploadPath } from "../path";
 
 const storage = multer.diskStorage({
   destination: (_, file, cb) => {
     try {
-      let directory = uuid.v4();
+      let directory = uuidv4();
       if (!fs.existsSync(uploadPath)) {
         fs.mkdirSync(uploadPath);
       }
