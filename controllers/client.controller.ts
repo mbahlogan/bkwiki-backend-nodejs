@@ -4,10 +4,11 @@ import sendEmail from "../emails";
 import emailTemplate from "../emails/templates";
 import organisationModel from "../models/organisation.model";
 import messages from "../helpers/messages";
+import { type Request, type Response } from "express";
 
-export const verifyUserEmail = async (req, res) => {
+export const verifyUserEmail = async (req: Request, res: Response) => {
   try {
-    let client = await Client.findById(req.user._id);
+    let client = await Client.findById(req.body.user._id);
     (client as any).emailValidated = true;
     await (client as any).save();
     res.json({ message: "Email verified", success: true });
@@ -28,7 +29,7 @@ export const verifyUserEmail = async (req, res) => {
   }
 };
 
-export const resetPassword = async (req, res) => {
+export const resetPassword = async (req: Request, res: Response) => {
   const { password } = req.body;
   try {
     let hashed = await hashPassword(password);
@@ -37,7 +38,7 @@ export const resetPassword = async (req, res) => {
       return res.json({ message: "An error occured", success: false });
     }
 
-    let client = await Client.findById(req.user._id);
+    let client = await Client.findById(req.body.user._id);
     (client as any).pwd = hashed;
     (client as any).emailValidated = true;
     await (client as any).save();
@@ -58,9 +59,9 @@ export const resetPassword = async (req, res) => {
   }
 };
 
-export const getUserInfo = async (req, res) => {
+export const getUserInfo = async (req: Request, res: Response) => {
   try {
-    const clientData = await Client.findById(req.user._id).select([
+    const clientData = await Client.findById(req.body.user._id).select([
       "fullName",
       "phone",
       "country",
@@ -73,11 +74,11 @@ export const getUserInfo = async (req, res) => {
   }
 };
 
-export const updateUser = async (req, res) => {
+export const updateUser = async (req: Request, res: Response) => {
   try {
     const { fullName, emailAddress, country, phoneNumber } = req.body;
 
-    const client = await Client.findById(req.user._id).select([
+    const client = await Client.findById(req.body.user._id).select([
       "fullName",
       "phone",
       "country",
@@ -96,10 +97,10 @@ export const updateUser = async (req, res) => {
   }
 };
 
-export const updateUserPassword = async (req, res) => {
+export const updateUserPassword = async (req: Request, res: Response) => {
   try {
     const { oldPassword, newPassword } = req.body;
-    const client = await Client.findById(req.user._id);
+    const client = await Client.findById(req.body.user._id);
 
     if (comparePassword(oldPassword, (client as any).pwd)) {
       let hashed = await hashPassword(newPassword);
@@ -128,7 +129,7 @@ export const fetchOrgs = async (_, res) => {
   }
 };
 
-export const getOrgById = async (req, res) => {
+export const getOrgById = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
     let org = await organisationModel

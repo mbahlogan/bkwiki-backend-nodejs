@@ -27,13 +27,14 @@ app.use("/api/admin/files", filesRoute);
 app.use("/api/client/files", filesRoute);
 
 
+app.use("/api/client", clientRoute);
+
 app.use(
   "/api/client",
   passport.authenticate("client", {
     session: false,
     failureRedirect: "/unauthorised",
-  }),
-  clientRoute
+  })
 );
 
 app.use(
